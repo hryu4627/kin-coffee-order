@@ -2,9 +2,9 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8">
-    <title>Ä«Æä °ü¸®ÀÚ (»çÀå´Ô) - °øÀ¯¹öÀü</title>
+    <title>ì¹´í˜ ê´€ë¦¬ì (ì‚¬ì¥ë‹˜) - ê³µìœ ë²„ì „</title>
     <style>
-        /* ¿øº» ½ºÅ¸ÀÏ À¯Áö */
+        /* ì›ë³¸ ìŠ¤íƒ€ì¼ ìœ ì§€ */
         body { font-family: "Malgun Gothic", sans-serif; padding: 20px; background: #e9ecef; transition: background-color 0.3s; }
         .header { background: #343a40; color: white; padding: 15px 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
         .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
@@ -43,19 +43,19 @@
 <body onclick="stopAlert()"> 
     <div class="header">
         <div class="header-top">
-            <h2 style="margin:0;">ÁÖ¹® °ü¸® (»çÀå´Ô)</h2>
+            <h2 style="margin:0;">ì£¼ë¬¸ ê´€ë¦¬ (ì‚¬ì¥ë‹˜)</h2>
             <div>
                 <span id="today-date-admin" style="margin-right:15px; font-weight:normal;"></span>
-                <button class="btn-reset" onclick="resetAll()">¸¶°¨ (ÀüÃ¼»èÁ¦)</button>
+                <button class="btn-reset" onclick="resetAll()">ë§ˆê° (ì „ì²´ì‚­ì œ)</button>
             </div>
         </div>
         
         <div class="status-control-panel">
-            <span class="status-label">¡á ¿µ¾÷ »óÅÂ ¼³Á¤:</span>
+            <span class="status-label">â–  ì˜ì—… ìƒíƒœ ì„¤ì •:</span>
             <div class="radio-group">
-                <label><input type="radio" name="shopStatus" value="OPEN" onclick="changeShopStatus('OPEN')"> [¿µ¾÷Áß]</label>
-                <label><input type="radio" name="shopStatus" value="PAUSE" onclick="changeShopStatus('PAUSE')"> [Àá½Ã ÁßÁö]</label>
-                <label><input type="radio" name="shopStatus" value="CLOSED" onclick="changeShopStatus('CLOSED')"> [¿µ¾÷ Á¾·á]</label>
+                <label><input type="radio" name="shopStatus" value="OPEN" onclick="changeShopStatus('OPEN')"> [ì˜ì—…ì¤‘]</label>
+                <label><input type="radio" name="shopStatus" value="PAUSE" onclick="changeShopStatus('PAUSE')"> [ì ì‹œ ì¤‘ì§€]</label>
+                <label><input type="radio" name="shopStatus" value="CLOSED" onclick="changeShopStatus('CLOSED')"> [ì˜ì—… ì¢…ë£Œ]</label>
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@
         import { getDatabase, ref, set, update, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
         // =========================================================
-        // [¼³Á¤] ÁÖ¹®ÀÚ¿Í ¶È°°Àº ¼³Á¤°ªÀ» ¿©±â¿¡ ºÙ¿©³ÖÀ¸¼¼¿ä.
+        // [ì„¤ì •] ì£¼ë¬¸ìì™€ ë˜‘ê°™ì€ ì„¤ì •ê°’ì„ ì—¬ê¸°ì— ë¶™ì—¬ë„£ìœ¼ì„¸ìš”.
         // =========================================================
         const firebaseConfig = {
             apiKey: "AIzaSyDn2Qoscan0DJsilwaoLzSMio7u_JrP9lI",
@@ -83,7 +83,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        // Àü¿ª ÇÔ¼ö ¿¬°á
+        // ì „ì—­ í•¨ìˆ˜ ì—°ê²°
         window.changeShopStatus = changeShopStatus;
         window.updateStatus = updateStatus;
         window.resetAll = resetAll;
@@ -94,7 +94,7 @@
         let lastOrderCount = 0;
         let isFirstLoad = true;
 
-        // 1. ¿µ¾÷ »óÅÂ ºÒ·¯¿À±â & ½Ç½Ã°£ °¨Áö
+        // 1. ì˜ì—… ìƒíƒœ ë¶ˆëŸ¬ì˜¤ê¸° & ì‹¤ì‹œê°„ ê°ì§€
         onValue(ref(db, 'shopStatus'), (snapshot) => {
             const status = snapshot.val() || "OPEN";
             const radios = document.getElementsByName("shopStatus");
@@ -103,21 +103,21 @@
             }
         });
 
-        // 2. ÁÖ¹® ³»¿ª ½Ç½Ã°£ °¨Áö (»õ ÁÖ¹® ¿À¸é ÀÚµ¿ ½ÇÇàµÊ)
+        // 2. ì£¼ë¬¸ ë‚´ì—­ ì‹¤ì‹œê°„ ê°ì§€ (ìƒˆ ì£¼ë¬¸ ì˜¤ë©´ ìë™ ì‹¤í–‰ë¨)
         onValue(ref(db, 'orders'), (snapshot) => {
             const data = snapshot.val();
             const container = document.getElementById("order-container");
             
             if (!data) {
-                container.innerHTML = "<div style='text-align:center; padding:50px; color:#888;'><h3>´ë±â ÁßÀÎ ÁÖ¹®ÀÌ ¾ø½À´Ï´Ù.</h3></div>";
+                container.innerHTML = "<div style='text-align:center; padding:50px; color:#888;'><h3>ëŒ€ê¸° ì¤‘ì¸ ì£¼ë¬¸ì´ ì—†ìŠµë‹ˆë‹¤.</h3></div>";
                 lastOrderCount = 0;
                 return;
             }
 
-            // °´Ã¼¸¦ ¹è¿­·Î º¯È¯ (Firebase´Â °´Ã¼ ÇüÅÂÀÓ)
+            // ê°ì²´ë¥¼ ë°°ì—´ë¡œ ë³€í™˜ (FirebaseëŠ” ê°ì²´ í˜•íƒœì„)
             const list = Object.values(data);
             
-            // ¾Ë¸² ·ÎÁ÷
+            // ì•Œë¦¼ ë¡œì§
             if (!isFirstLoad && list.length > lastOrderCount) {
                 triggerAlert();
             }
@@ -126,34 +126,34 @@
 
             container.innerHTML = "";
             
-            // ¿ª¼ø(ÃÖ½Å¼ø) Á¤·Ä µî ÇÊ¿ä½Ã ¿©±â¼­ sort °¡´É. ¿©±â¼± µî·Ï¼ø.
+            // ì—­ìˆœ(ìµœì‹ ìˆœ) ì •ë ¬ ë“± í•„ìš”ì‹œ ì—¬ê¸°ì„œ sort ê°€ëŠ¥. ì—¬ê¸°ì„  ë“±ë¡ìˆœ.
             list.forEach((order) => {
-                const key = order.key; // ÆÄÀÌ¾îº£ÀÌ½º Å°
+                const key = order.key; // íŒŒì´ì–´ë² ì´ìŠ¤ í‚¤
                 let statusClass = "";
                 let actionAreaHtml = ""; 
-                const requestMsg = order.request ? order.request : "¿äÃ»»çÇ× ¾øÀ½";
+                const requestMsg = order.request ? order.request : "ìš”ì²­ì‚¬í•­ ì—†ìŒ";
 
-                if (order.status === "Á¢¼ö ´ë±â") {
+                if (order.status === "ì ‘ìˆ˜ ëŒ€ê¸°") {
                     statusClass = "waiting";
                     actionAreaHtml = `
-                        <span style="font-size:14px;">¿¹»ó</span>
+                        <span style="font-size:14px;">ì˜ˆìƒ</span>
                         <input type="number" id="time-${key}" value="10">
-                        <span style="font-size:14px; margin-right:5px;">ºĞ</span>
-                        <button class="btn-accept" onclick="updateStatus('${key}', 'Á¶¸® Áß'); event.stopPropagation();">Á¢¼ö</button>
-                        <button class="btn-done" onclick="updateStatus('${key}', 'Á¶¸® ¿Ï·á'); event.stopPropagation();">¹Ù·Î ¿Ï·á</button>
+                        <span style="font-size:14px; margin-right:5px;">ë¶„</span>
+                        <button class="btn-accept" onclick="updateStatus('${key}', 'ì¡°ë¦¬ ì¤‘'); event.stopPropagation();">ì ‘ìˆ˜</button>
+                        <button class="btn-done" onclick="updateStatus('${key}', 'ì¡°ë¦¬ ì™„ë£Œ'); event.stopPropagation();">ë°”ë¡œ ì™„ë£Œ</button>
                     `;
-                } else if (order.status === "Á¶¸® Áß") {
+                } else if (order.status === "ì¡°ë¦¬ ì¤‘") {
                     statusClass = "cooking";
                     actionAreaHtml = `
-                        <span class="scheduled-time">¿Ï·á¿¹Á¤: ${order.completeTime}</span>
-                        <button class="btn-gray">Á¢¼öµÊ</button>
-                        <button class="btn-done" onclick="updateStatus('${key}', 'Á¶¸® ¿Ï·á'); event.stopPropagation();">Á¶¸® ¿Ï·á</button>
+                        <span class="scheduled-time">ì™„ë£Œì˜ˆì •: ${order.completeTime}</span>
+                        <button class="btn-gray">ì ‘ìˆ˜ë¨</button>
+                        <button class="btn-done" onclick="updateStatus('${key}', 'ì¡°ë¦¬ ì™„ë£Œ'); event.stopPropagation();">ì¡°ë¦¬ ì™„ë£Œ</button>
                     `;
-                } else if (order.status === "Á¶¸® ¿Ï·á") {
+                } else if (order.status === "ì¡°ë¦¬ ì™„ë£Œ") {
                     statusClass = "done";
                     actionAreaHtml = `
                         <div style="background:#d4edda; color:#155724; padding:10px; text-align:center; font-weight:bold; border-radius:5px; width:100%;">
-                            [¿Ï·á] ÇÈ¾÷ ´ë±âÁß (${order.completeTime})
+                            [ì™„ë£Œ] í”½ì—… ëŒ€ê¸°ì¤‘ (${order.completeTime})
                         </div>
                     `;
                 }
@@ -162,24 +162,24 @@
                     <div class="order-card ${statusClass}">
                         <div class="top-row">
                             <span class="order-num">No. ${order.orderNumber}</span>
-                            <span class="order-time">${order.timestamp} Á¢¼ö</span>
+                            <span class="order-time">${order.timestamp} ì ‘ìˆ˜</span>
                         </div>
                         <div class="user-info">
-                            <span class="user-label">ÁÖ¹®ÀÚ:</span> ${order.name} | 
-                            <span class="user-label">ÀüÈ­:</span> ${order.phone}
+                            <span class="user-label">ì£¼ë¬¸ì:</span> ${order.name} | 
+                            <span class="user-label">ì „í™”:</span> ${order.phone}
                         </div>
                         <span class="menu-text">${order.menu}</span>
                         <div class="request-box">
-                            <span class="req-tag">[¿äÃ»]</span> ${requestMsg}
+                            <span class="req-tag">[ìš”ì²­]</span> ${requestMsg}
                         </div>
                         <div class="btn-area">${actionAreaHtml}</div>
                     </div>
                 `;
-                container.innerHTML += html; // ÃÖ½Å¼øÀ¸·Î ÇÏ·Á¸é prepend »ç¿ë
+                container.innerHTML += html; // ìµœì‹ ìˆœìœ¼ë¡œ í•˜ë ¤ë©´ prepend ì‚¬ìš©
             });
         });
 
-        // --- ±â´É ÇÔ¼öµé ---
+        // --- ê¸°ëŠ¥ í•¨ìˆ˜ë“¤ ---
 
         function triggerAlert() {
             playSirenOrder(3);
@@ -194,7 +194,7 @@
         function playSirenOrder(count) {
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
-                const text = "ÁÖ¹®ÀÌ µé¾î¿Ô½À´Ï´Ù!";
+                const text = "ì£¼ë¬¸ì´ ë“¤ì–´ì™”ìŠµë‹ˆë‹¤!";
                 for(let i=0; i<count; i++) {
                     const msg = new SpeechSynthesisUtterance(text);
                     msg.lang = 'ko-KR';
@@ -208,12 +208,12 @@
             const updates = {};
             updates['/orders/' + key + '/status'] = newStatus;
 
-            if (newStatus === 'Á¶¸® Áß') {
+            if (newStatus === 'ì¡°ë¦¬ ì¤‘') {
                 const minutes = parseInt(document.getElementById(`time-${key}`).value) || 10;
                 const now = new Date();
                 const finishTime = new Date(now.getTime() + minutes * 60000);
                 updates['/orders/' + key + '/completeTime'] = finishTime.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
-            } else if (newStatus === 'Á¶¸® ¿Ï·á') {
+            } else if (newStatus === 'ì¡°ë¦¬ ì™„ë£Œ') {
                 updates['/orders/' + key + '/completeTime'] = new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
             }
 
@@ -223,15 +223,15 @@
 
         function changeShopStatus(status) {
             set(ref(db, 'shopStatus'), status);
-            alert("¿µ¾÷ »óÅÂ°¡ °øÀ¯µÇ¾ú½À´Ï´Ù.");
+            alert("ì˜ì—… ìƒíƒœê°€ ê³µìœ ë˜ì—ˆìŠµë‹ˆë‹¤.");
         }
 
         function resetAll() {
-            if (confirm("Á¤¸» ¸¶°¨ÇÏ½Ã°Ú½À´Ï±î? ¸ğµç ÁÖ¹® ³»¿ªÀÌ ¼­¹ö¿¡¼­ »èÁ¦µË´Ï´Ù.")) {
+            if (confirm("ì •ë§ ë§ˆê°í•˜ì‹œê² ìŠµë‹ˆê¹Œ? ëª¨ë“  ì£¼ë¬¸ ë‚´ì—­ì´ ì„œë²„ì—ì„œ ì‚­ì œë©ë‹ˆë‹¤.")) {
                 remove(ref(db, 'orders'));
-                // ¿µ¾÷ »óÅÂµµ ÃÊ±âÈ­ÇÏ·Á¸é ¾Æ·¡ ÁÖ¼® ÇØÁ¦
+                // ì˜ì—… ìƒíƒœë„ ì´ˆê¸°í™”í•˜ë ¤ë©´ ì•„ë˜ ì£¼ì„ í•´ì œ
                 // set(ref(db, 'shopStatus'), 'OPEN');
-                alert("ÃÊ±âÈ­ ¿Ï·á");
+                alert("ì´ˆê¸°í™” ì™„ë£Œ");
             }
         }
     </script>
