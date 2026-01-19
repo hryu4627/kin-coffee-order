@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>KIN COFFEE - 주문하기(공유버전)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* 디자인은 원본과 동일하게 유지 */
+        body { font-family: "Malgun Gothic", sans-serif; padding: 20px; max-width: 400px; margin: 0 auto; background: #f5f5f5; }
+        .header { text-align: center; margin-bottom: 20px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .header h2 { margin: 0; color: #1a237e; font-size: 28px; font-weight: 900; }
+        .date-display { color: #666; font-size: 14px; margin-top: 5px; }
+        .input-card { background: white; padding: 20px; border-radius: 10px; border: 1px solid #ddd; margin-bottom: 15px; }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
+        .input-group input { width: 90%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; display: block; }
+        .menu-category { color: #1a237e; border-bottom: 2px solid #1a237e; padding-bottom: 5px; margin-top: 25px; margin-bottom: 10px; font-size: 18px; font-weight: bold; }
+        .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .menu-info { flex: 1; }
+        .menu-name { font-size: 15px; font-weight: bold; display: block; color: #333; }
+        .menu-price { font-size: 13px; color: #666; }
+        .qty-control { display: flex; align-items: center; gap: 8px; background: #f8f9fa; padding: 4px; border-radius: 20px; border: 1px solid #ddd; }
+        .btn-qty { width: 28px; height: 28px; border: none; background: white; border-radius: 50%; font-weight: bold; font-size: 16px; cursor: pointer; color: #1a237e; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .qty-display { font-size: 16px; font-weight: bold; width: 22px; text-align: center; color: #333; }
+        .total-area { text-align: right; font-size: 18px; font-weight: bold; margin-top: 20px; color: #333; border-top: 2px solid #333; padding-top: 15px; }
+        .total-price { color: #d63384; font-size: 24px; }
+        .btn-order { padding: 15px; background-color: #1a237e; color: white; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-size: 18px; font-weight: bold; margin-top: 10px; box-shadow: 0 3px 6px rgba(26,35,126,0.3); }
+        .btn-order:hover { background-color: #121858; transform: translateY(-1px); }
+        #my-status-area { display: none; }
+        .status-card { background: white; padding: 30px 20px; border-radius: 15px; text-align: center; border: 2px solid #1a237e; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .status-badge { display: inline-block; padding: 6px 15px; border-radius: 20px; background: #eee; font-weight: bold; margin-bottom: 15px; font-size: 14px;}
+        .order-number { font-size: 40px; font-weight: bold; color: #333; margin: 10px 0; letter-spacing: -1px; }
+        .time-info { color: #d63384; font-size: 22px; font-weight: bold; margin-top: 15px; background: #fff0f6; padding: 10px; border-radius: 8px; display: none; }
+        .helper-text { margin-top: 20px; font-size: 14px; color: #555; font-weight: bold; }
+        .footer-reset { text-align: center; margin-top: 50px; }
+        .btn-reset-app { background: transparent; border: 1px solid #ccc; color: #999; padding: 5px 10px; font-size: 12px; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>KIN COFFEE</h2>
+        <div class="date-display" id="today-date"></div>
+    </div>
+    
+    <div id="order-form-area">
+        <div class="input-card">
+            <div class="input-group"><label>이름</label><input type="text" id="user-name" placeholder="주문자 성함"></div>
+            <div class="input-group"><label>휴대폰 번호</label><input type="tel" id="user-phone" placeholder="예: 010-1234-5678"></div>
+            <div class="input-group"><label>요청사항 (선택)</label><input type="text" id="user-request" placeholder="예: 얼음 적게, 덜 달게 등"></div>
+        </div>
+
+        <div class="input-card">
+            <h3 class="menu-category">COFFEE</h3>
+            <div class="menu-item" data-name="아메리카노(ICE)" data-price="2000">
+                <div class="menu-info"><span class="menu-name">아메리카노 (ICE)</span><span class="menu-price">2,000원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+             <div class="menu-item" data-name="아메리카노(HOT)" data-price="2000">
+                <div class="menu-info"><span class="menu-name">아메리카노 (HOT)</span><span class="menu-price">2,000원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="카페라떼(ICE)" data-price="2700">
+                <div class="menu-info"><span class="menu-name">카페라떼 (ICE)</span><span class="menu-price">2,700원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+             <div class="menu-item" data-name="카페라떼(HOT)" data-price="2700">
+                <div class="menu-info"><span class="menu-name">카페라떼 (HOT)</span><span class="menu-price">2,700원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="바닐라라떼(ICE)" data-price="3200">
+                <div class="menu-info"><span class="menu-name">바닐라 라떼 (ICE)</span><span class="menu-price">3,200원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="total-area">
+                총 결제금액: <span class="total-price" id="total-price">0</span>원
+            </div>
+        </div>
+        
+        <button class="btn-order" onclick="placeOrder()">주문하기</button>
+    </div>
+
+    <div id="my-status-area">
+        <div class="status-card" id="status-card-inner">
+            <div class="status-badge" id="status-badge">접수 대기 중</div>
+            <div>오늘의 대기번호</div>
+            <div class="order-number" id="my-order-num">--</div>
+            
+            <div id="estimated-time-box" class="time-info">
+                완료 예정<br><span id="time-text">--:--</span>
+            </div>
+
+            <div class="helper-text" id="guide-msg">
+                잠시만 기다려주세요.<br>사장님이 확인하면 시간이 표시됩니다.
+            </div>
+            
+            <button onclick="finishMyOrder()" style="margin-top:20px; padding:10px; width:100%; border:1px solid #ddd; background:white; border-radius:5px; cursor:pointer; display:none;" id="btn-new-order">새로 주문하기</button>
+        </div>
+    </div>
+
+    <div class="footer-reset">
+        <button class="btn-reset-app" onclick="forceReset()">화면이 멈췄나요? (초기화)</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, push, set, onValue, get, child } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        // =========================================================
+        // [설정] 아래 괄호 안에 파이어베이스 설정값을 붙여넣으세요.
+        // =========================================================
+        const firebaseConfig = {
+           apiKey: "AIzaSyDn2Qoscan0DJsilwaoLzSMio7u_JrP9lI",
+           authDomain: "order-901d1.firebaseapp.com",
+           projectId: "order-901d1",
+           storageBucket: "order-901d1.firebasestorage.app",
+           messagingSenderId: "790529823560",
+           appId: "1:790529823560:web:d70daa37b23a5b6912997d",
+           easurementId: "G-2D27K14R4R"
+        };
+        // =========================================================
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // 전역 변수로 함수 노출 (HTML onclick에서 쓰기 위해)
+        window.changeQty = changeQty;
+        window.placeOrder = placeOrder;
+        window.finishMyOrder = finishMyOrder;
+        window.forceReset = forceReset;
+
+        const now = new Date();
+        const dateString = now.toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'long'});
+        document.getElementById('today-date').innerText = dateString;
+
+        // 로컬에는 '내 주문 ID'만 저장 (데이터는 서버에)
+        let myKey = localStorage.getItem("my_active_order_key");
+        
+        // 페이지 로드시 내 상태 확인 (서버에서 듣기)
+        if(myKey) {
+            startListeningMyOrder(myKey);
+        }
+
+        function changeQty(btn, change) {
+            const container = btn.parentElement;
+            const display = container.querySelector('.qty-display');
+            let currentQty = parseInt(display.innerText);
+            let newQty = currentQty + change;
+            if (newQty < 0) newQty = 0; 
+            display.innerText = newQty;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let total = 0;
+            document.querySelectorAll('.menu-item').forEach(item => {
+                const price = parseInt(item.dataset.price);
+                const qty = parseInt(item.querySelector('.qty-display').innerText);
+                total += price * qty;
+            });
+            document.getElementById('total-price').innerText = total.toLocaleString();
+        }
+
+        async function placeOrder() {
+            // 1. 영업 상태 확인 (서버에서 가져옴)
+            const statusRef = ref(db, 'shopStatus');
+            const snapshot = await get(statusRef);
+            const shopStatus = snapshot.exists() ? snapshot.val() : "OPEN";
+
+            if (shopStatus === "CLOSED") {
+                alert("현재 영업이 종료되었습니다.\n다음에 이용해주세요!"); return;
+            }
+            if (shopStatus === "PAUSE") {
+                alert("잠시 주문이 중지되었습니다.\n잠시 후 다시 시도해주세요!"); return;
+            }
+
+            const name = document.getElementById("user-name").value.trim();
+            const phone = document.getElementById("user-phone").value.trim();
+            let request = document.getElementById("user-request").value.trim();
+            if (request === "") request = "맛있게 만들어주세요";
+            
+            if (!name || !phone) { alert("이름과 휴대폰 번호를 꼭 입력해주세요."); return; }
+            if (phone.length < 4) { alert("휴대폰 번호를 정확히 입력해주세요."); return; }
+
+            let selectedMenu = [];
+            let totalQty = 0;
+            document.querySelectorAll('.menu-item').forEach(item => {
+                const qty = parseInt(item.querySelector('.qty-display').innerText);
+                if (qty > 0) {
+                    selectedMenu.push(`${item.dataset.name} ${qty}개`);
+                    totalQty += qty;
+                }
+            });
+            
+            if (totalQty === 0) { alert("메뉴를 하나 이상 선택해주세요!"); return; }
+
+            // 2. 주문 번호 생성 (트랜잭션 대신 간단히 날짜+랜덤으로 처리하거나, 서버 카운터 사용)
+            // 간단하게 현재 초 + 랜덤으로 대기번호 생성 (충돌 방지용)
+            const today = new Date();
+            const orderNum = today.getHours().toString() + today.getMinutes().toString() + Math.floor(Math.random()*10);
+
+            // 3. 서버에 저장
+            const ordersRef = ref(db, 'orders');
+            const newOrderRef = push(ordersRef); // 새 키 생성
+            const newKey = newOrderRef.key;
+
+            const newOrder = {
+                key: newKey,
+                orderNumber: orderNum, // 실제론 서버 카운팅이 좋으나 간단히 구현
+                name: name,
+                phone: phone,
+                request: request,
+                menu: selectedMenu.join(", "), 
+                status: "접수 대기",
+                completeTime: "",
+                timestamp: new Date().toLocaleTimeString('ko-KR')
+            };
+
+            set(newOrderRef, newOrder)
+                .then(() => {
+                    localStorage.setItem("my_active_order_key", newKey);
+                    alert("주문이 전송되었습니다! (대기번호: " + orderNum + ")");
+                    startListeningMyOrder(newKey);
+                })
+                .catch((e) => {
+                    alert("주문 전송 실패: " + e.message);
+                });
+        }
+
+        function startListeningMyOrder(key) {
+            // 화면 전환
+            document.getElementById("order-form-area").style.display = "none";
+            document.getElementById("my-status-area").style.display = "block";
+
+            // 실시간 감시 시작
+            const myOrderRef = ref(db, 'orders/' + key);
+            onValue(myOrderRef, (snapshot) => {
+                const order = snapshot.val();
+                if (order) {
+                    showStatusScreen(order);
+                } else {
+                    // 주문이 삭제된 경우 (마감 등)
+                    alert("주문 정보가 사라졌습니다. (마감되었거나 취소됨)");
+                    finishMyOrder();
+                }
+            });
+        }
+
+        function showStatusScreen(order) {
+            document.getElementById("my-order-num").innerText = "No. " + order.orderNumber;
+            const badge = document.getElementById("status-badge");
+            const timeBox = document.getElementById("estimated-time-box");
+            const card = document.getElementById("status-card-inner");
+            const guide = document.getElementById("guide-msg");
+
+            badge.innerText = order.status;
+            
+            // 상태별 디자인
+            if (order.status === "조리 중") {
+                badge.style.backgroundColor = "#ffc107";
+                badge.style.color = "black";
+                if (order.completeTime) {
+                    timeBox.style.display = "block";
+                    document.getElementById("time-text").innerText = order.completeTime;
+                    guide.innerText = "맛있게 만들고 있습니다!";
+                }
+            } else if (order.status === "조리 완료") {
+                badge.style.backgroundColor = "#28a745";
+                badge.style.color = "white";
+                badge.innerText = "픽업해 주세요!";
+                card.style.borderColor = "#28a745";
+                card.style.backgroundColor = "#f0fff4";
+                timeBox.style.display = "none";
+                guide.innerText = "키오스크에서 결제한 뒤 영수증을 제시해주세요";
+                document.getElementById("btn-new-order").style.display = "block";
+            } else {
+                // 접수 대기
+                badge.style.backgroundColor = "#e9ecef";
+                badge.style.color = "black";
+                card.style.backgroundColor = "white";
+                card.style.borderColor = "#1a237e";
+                timeBox.style.display = "none";
+            }
+        }
+
+        function finishMyOrder() {
+            localStorage.removeItem("my_active_order_key");
+            location.reload();
+        }
+
+        function forceReset() {
+            if(confirm("초기화 하시겠습니까?")) {
+                finishMyOrder();
+            }
+        }
+    </script>
+</body>
+</html>

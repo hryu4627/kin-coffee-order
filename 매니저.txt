@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>카페 관리자 (사장님) - 공유버전</title>
+    <style>
+        /* 원본 스타일 유지 */
+        body { font-family: "Malgun Gothic", sans-serif; padding: 20px; background: #e9ecef; transition: background-color 0.3s; }
+        .header { background: #343a40; color: white; padding: 15px 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
+        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .status-control-panel { background: #495057; padding: 10px 15px; border-radius: 5px; display: flex; align-items: center; gap: 15px; }
+        .status-label { font-weight: bold; color: #ffc107; margin-right: 5px; }
+        .radio-group label { cursor: pointer; color: white; margin-right: 15px; font-size: 16px; display: inline-flex; align-items: center; }
+        .radio-group input { margin-right: 5px; transform: scale(1.2); cursor: pointer; }
+        .order-card { background: white; padding: 20px; border-radius: 8px; margin-bottom: 15px; border-left: 8px solid #ccc; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: all 0.3s;}
+        .order-card.waiting { border-left-color: #ffc107; background: #fffbf0; } 
+        .order-card.cooking { border-left-color: #007bff; background: white; }   
+        .order-card.done { border-left-color: #28a745; background: #e8f5e9; opacity: 0.8; } 
+        .top-row { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;}
+        .order-num { font-size: 24px; font-weight: bold; color: #333; }
+        .order-time { font-size: 14px; color: #888; margin-top: 8px; }
+        .user-info { font-size: 15px; color: #555; margin-bottom: 10px; font-weight: bold; }
+        .user-label { color: #888; font-weight: normal; margin-right: 2px;}
+        .menu-text { font-size: 18px; font-weight: bold; color: #222; display: block; margin-bottom: 10px;}
+        .request-box { background: #e7f5ff; border: 1px solid #bce8f1; color: #31708f; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 15px; font-weight: bold; }
+        .req-tag { color: #0056b3; margin-right: 5px; font-weight: 900; }
+        .btn-area { display: flex; gap: 8px; align-items: center; margin-top: 15px; border-top: 1px solid #f1f1f1; padding-top: 15px;}
+        input[type="number"] { width: 50px; padding: 10px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; font-weight: bold;}
+        button { padding: 10px 16px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 15px;}
+        .btn-accept { background: #007bff; color: white; } 
+        .btn-gray { background: #6c757d; color: white; cursor: default; } 
+        .btn-done { background: #28a745; color: white; flex: 1; } 
+        .btn-reset { background: #dc3545; color: white; font-size: 13px; padding: 8px 12px; }
+        .scheduled-time { color: #d63384; font-weight: bold; font-size: 16px; margin-right: 10px; }
+        @keyframes flash-animation {
+            0% { background-color: #e9ecef; }
+            50% { background-color: #ffcccc; } 
+            100% { background-color: #e9ecef; }
+        }
+        .alert-mode { animation: flash-animation 1s infinite; }
+    </style>
+</head>
+<body onclick="stopAlert()"> 
+    <div class="header">
+        <div class="header-top">
+            <h2 style="margin:0;">주문 관리 (사장님)</h2>
+            <div>
+                <span id="today-date-admin" style="margin-right:15px; font-weight:normal;"></span>
+                <button class="btn-reset" onclick="resetAll()">마감 (전체삭제)</button>
+            </div>
+        </div>
+        
+        <div class="status-control-panel">
+            <span class="status-label">■ 영업 상태 설정:</span>
+            <div class="radio-group">
+                <label><input type="radio" name="shopStatus" value="OPEN" onclick="changeShopStatus('OPEN')"> [영업중]</label>
+                <label><input type="radio" name="shopStatus" value="PAUSE" onclick="changeShopStatus('PAUSE')"> [잠시 중지]</label>
+                <label><input type="radio" name="shopStatus" value="CLOSED" onclick="changeShopStatus('CLOSED')"> [영업 종료]</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="order-container"></div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, set, update, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        // =========================================================
+        // [설정] 주문자와 똑같은 설정값을 여기에 붙여넣으세요.
+        // =========================================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyDn2Qoscan0DJsilwaoLzSMio7u_JrP9lI",
+            authDomain: "order-901d1.firebaseapp.com",
+            projectId: "order-901d1",
+            storageBucket: "order-901d1.firebasestorage.app",
+            messagingSenderId: "790529823560",
+            appId: "1:790529823560:web:d70daa37b23a5b6912997d",
+            measurementId: "G-2D27K14R4R"
+        };
+        // =========================================================
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // 전역 함수 연결
+        window.changeShopStatus = changeShopStatus;
+        window.updateStatus = updateStatus;
+        window.resetAll = resetAll;
+        window.stopAlert = stopAlert;
+
+        document.getElementById('today-date-admin').innerText = new Date().toLocaleDateString('ko-KR');
+        
+        let lastOrderCount = 0;
+        let isFirstLoad = true;
+
+        // 1. 영업 상태 불러오기 & 실시간 감지
+        onValue(ref(db, 'shopStatus'), (snapshot) => {
+            const status = snapshot.val() || "OPEN";
+            const radios = document.getElementsByName("shopStatus");
+            for(let r of radios) {
+                if(r.value === status) r.checked = true;
+            }
+        });
+
+        // 2. 주문 내역 실시간 감지 (새 주문 오면 자동 실행됨)
+        onValue(ref(db, 'orders'), (snapshot) => {
+            const data = snapshot.val();
+            const container = document.getElementById("order-container");
+            
+            if (!data) {
+                container.innerHTML = "<div style='text-align:center; padding:50px; color:#888;'><h3>대기 중인 주문이 없습니다.</h3></div>";
+                lastOrderCount = 0;
+                return;
+            }
+
+            // 객체를 배열로 변환 (Firebase는 객체 형태임)
+            const list = Object.values(data);
+            
+            // 알림 로직
+            if (!isFirstLoad && list.length > lastOrderCount) {
+                triggerAlert();
+            }
+            lastOrderCount = list.length;
+            isFirstLoad = false;
+
+            container.innerHTML = "";
+            
+            // 역순(최신순) 정렬 등 필요시 여기서 sort 가능. 여기선 등록순.
+            list.forEach((order) => {
+                const key = order.key; // 파이어베이스 키
+                let statusClass = "";
+                let actionAreaHtml = ""; 
+                const requestMsg = order.request ? order.request : "요청사항 없음";
+
+                if (order.status === "접수 대기") {
+                    statusClass = "waiting";
+                    actionAreaHtml = `
+                        <span style="font-size:14px;">예상</span>
+                        <input type="number" id="time-${key}" value="10">
+                        <span style="font-size:14px; margin-right:5px;">분</span>
+                        <button class="btn-accept" onclick="updateStatus('${key}', '조리 중'); event.stopPropagation();">접수</button>
+                        <button class="btn-done" onclick="updateStatus('${key}', '조리 완료'); event.stopPropagation();">바로 완료</button>
+                    `;
+                } else if (order.status === "조리 중") {
+                    statusClass = "cooking";
+                    actionAreaHtml = `
+                        <span class="scheduled-time">완료예정: ${order.completeTime}</span>
+                        <button class="btn-gray">접수됨</button>
+                        <button class="btn-done" onclick="updateStatus('${key}', '조리 완료'); event.stopPropagation();">조리 완료</button>
+                    `;
+                } else if (order.status === "조리 완료") {
+                    statusClass = "done";
+                    actionAreaHtml = `
+                        <div style="background:#d4edda; color:#155724; padding:10px; text-align:center; font-weight:bold; border-radius:5px; width:100%;">
+                            [완료] 픽업 대기중 (${order.completeTime})
+                        </div>
+                    `;
+                }
+
+                const html = `
+                    <div class="order-card ${statusClass}">
+                        <div class="top-row">
+                            <span class="order-num">No. ${order.orderNumber}</span>
+                            <span class="order-time">${order.timestamp} 접수</span>
+                        </div>
+                        <div class="user-info">
+                            <span class="user-label">주문자:</span> ${order.name} | 
+                            <span class="user-label">전화:</span> ${order.phone}
+                        </div>
+                        <span class="menu-text">${order.menu}</span>
+                        <div class="request-box">
+                            <span class="req-tag">[요청]</span> ${requestMsg}
+                        </div>
+                        <div class="btn-area">${actionAreaHtml}</div>
+                    </div>
+                `;
+                container.innerHTML += html; // 최신순으로 하려면 prepend 사용
+            });
+        });
+
+        // --- 기능 함수들 ---
+
+        function triggerAlert() {
+            playSirenOrder(3);
+            document.body.classList.add("alert-mode");
+        }
+
+        function stopAlert() {
+            document.body.classList.remove("alert-mode");
+            window.speechSynthesis.cancel();
+        }
+
+        function playSirenOrder(count) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const text = "주문이 들어왔습니다!";
+                for(let i=0; i<count; i++) {
+                    const msg = new SpeechSynthesisUtterance(text);
+                    msg.lang = 'ko-KR';
+                    msg.rate = 1.0; 
+                    window.speechSynthesis.speak(msg);
+                }
+            }
+        }
+
+        function updateStatus(key, newStatus) {
+            const updates = {};
+            updates['/orders/' + key + '/status'] = newStatus;
+
+            if (newStatus === '조리 중') {
+                const minutes = parseInt(document.getElementById(`time-${key}`).value) || 10;
+                const now = new Date();
+                const finishTime = new Date(now.getTime() + minutes * 60000);
+                updates['/orders/' + key + '/completeTime'] = finishTime.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+            } else if (newStatus === '조리 완료') {
+                updates['/orders/' + key + '/completeTime'] = new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+            }
+
+            update(ref(db), updates);
+            stopAlert();
+        }
+
+        function changeShopStatus(status) {
+            set(ref(db, 'shopStatus'), status);
+            alert("영업 상태가 공유되었습니다.");
+        }
+
+        function resetAll() {
+            if (confirm("정말 마감하시겠습니까? 모든 주문 내역이 서버에서 삭제됩니다.")) {
+                remove(ref(db, 'orders'));
+                // 영업 상태도 초기화하려면 아래 주석 해제
+                // set(ref(db, 'shopStatus'), 'OPEN');
+                alert("초기화 완료");
+            }
+        }
+    </script>
+</body>
+</html>
