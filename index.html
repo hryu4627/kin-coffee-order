@@ -2,10 +2,10 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8">
-    <title>KIN COFFEE - ÁÖ¹®ÇÏ±â(°øÀ¯¹öÀü)</title>
+    <title>KIN COFFEE - ì£¼ë¬¸í•˜ê¸°(ê³µìœ ë²„ì „)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* µğÀÚÀÎÀº ¿øº»°ú µ¿ÀÏÇÏ°Ô À¯Áö */
+        /* ë””ìì¸ì€ ì›ë³¸ê³¼ ë™ì¼í•˜ê²Œ ìœ ì§€ */
         body { font-family: "Malgun Gothic", sans-serif; padding: 20px; max-width: 400px; margin: 0 auto; background: #f5f5f5; }
         .header { text-align: center; margin-bottom: 20px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .header h2 { margin: 0; color: #1a237e; font-size: 28px; font-weight: 900; }
@@ -44,61 +44,61 @@
     
     <div id="order-form-area">
         <div class="input-card">
-            <div class="input-group"><label>ÀÌ¸§</label><input type="text" id="user-name" placeholder="ÁÖ¹®ÀÚ ¼ºÇÔ"></div>
-            <div class="input-group"><label>ÈŞ´ëÆù ¹øÈ£</label><input type="tel" id="user-phone" placeholder="¿¹: 010-1234-5678"></div>
-            <div class="input-group"><label>¿äÃ»»çÇ× (¼±ÅÃ)</label><input type="text" id="user-request" placeholder="¿¹: ¾óÀ½ Àû°Ô, ´ú ´Ş°Ô µî"></div>
+            <div class="input-group"><label>ì´ë¦„</label><input type="text" id="user-name" placeholder="ì£¼ë¬¸ì ì„±í•¨"></div>
+            <div class="input-group"><label>íœ´ëŒ€í° ë²ˆí˜¸</label><input type="tel" id="user-phone" placeholder="ì˜ˆ: 010-1234-5678"></div>
+            <div class="input-group"><label>ìš”ì²­ì‚¬í•­ (ì„ íƒ)</label><input type="text" id="user-request" placeholder="ì˜ˆ: ì–¼ìŒ ì ê²Œ, ëœ ë‹¬ê²Œ ë“±"></div>
         </div>
 
         <div class="input-card">
             <h3 class="menu-category">COFFEE</h3>
-            <div class="menu-item" data-name="¾Æ¸Ş¸®Ä«³ë(ICE)" data-price="2000">
-                <div class="menu-info"><span class="menu-name">¾Æ¸Ş¸®Ä«³ë (ICE)</span><span class="menu-price">2,000¿ø</span></div>
+            <div class="menu-item" data-name="ì•„ë©”ë¦¬ì¹´ë…¸(ICE)" data-price="2000">
+                <div class="menu-info"><span class="menu-name">ì•„ë©”ë¦¬ì¹´ë…¸ (ICE)</span><span class="menu-price">2,000ì›</span></div>
                 <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
             </div>
-             <div class="menu-item" data-name="¾Æ¸Ş¸®Ä«³ë(HOT)" data-price="2000">
-                <div class="menu-info"><span class="menu-name">¾Æ¸Ş¸®Ä«³ë (HOT)</span><span class="menu-price">2,000¿ø</span></div>
+             <div class="menu-item" data-name="ì•„ë©”ë¦¬ì¹´ë…¸(HOT)" data-price="2000">
+                <div class="menu-info"><span class="menu-name">ì•„ë©”ë¦¬ì¹´ë…¸ (HOT)</span><span class="menu-price">2,000ì›</span></div>
                 <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
             </div>
-            <div class="menu-item" data-name="Ä«Æä¶ó¶¼(ICE)" data-price="2700">
-                <div class="menu-info"><span class="menu-name">Ä«Æä¶ó¶¼ (ICE)</span><span class="menu-price">2,700¿ø</span></div>
+            <div class="menu-item" data-name="ì¹´í˜ë¼ë–¼(ICE)" data-price="2700">
+                <div class="menu-info"><span class="menu-name">ì¹´í˜ë¼ë–¼ (ICE)</span><span class="menu-price">2,700ì›</span></div>
                 <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
             </div>
-             <div class="menu-item" data-name="Ä«Æä¶ó¶¼(HOT)" data-price="2700">
-                <div class="menu-info"><span class="menu-name">Ä«Æä¶ó¶¼ (HOT)</span><span class="menu-price">2,700¿ø</span></div>
+             <div class="menu-item" data-name="ì¹´í˜ë¼ë–¼(HOT)" data-price="2700">
+                <div class="menu-info"><span class="menu-name">ì¹´í˜ë¼ë–¼ (HOT)</span><span class="menu-price">2,700ì›</span></div>
                 <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
             </div>
-            <div class="menu-item" data-name="¹Ù´Ò¶ó¶ó¶¼(ICE)" data-price="3200">
-                <div class="menu-info"><span class="menu-name">¹Ù´Ò¶ó ¶ó¶¼ (ICE)</span><span class="menu-price">3,200¿ø</span></div>
+            <div class="menu-item" data-name="ë°”ë‹ë¼ë¼ë–¼(ICE)" data-price="3200">
+                <div class="menu-info"><span class="menu-name">ë°”ë‹ë¼ ë¼ë–¼ (ICE)</span><span class="menu-price">3,200ì›</span></div>
                 <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
             </div>
             <div class="total-area">
-                ÃÑ °áÁ¦±İ¾×: <span class="total-price" id="total-price">0</span>¿ø
+                ì´ ê²°ì œê¸ˆì•¡: <span class="total-price" id="total-price">0</span>ì›
             </div>
         </div>
         
-        <button class="btn-order" onclick="placeOrder()">ÁÖ¹®ÇÏ±â</button>
+        <button class="btn-order" onclick="placeOrder()">ì£¼ë¬¸í•˜ê¸°</button>
     </div>
 
     <div id="my-status-area">
         <div class="status-card" id="status-card-inner">
-            <div class="status-badge" id="status-badge">Á¢¼ö ´ë±â Áß</div>
-            <div>¿À´ÃÀÇ ´ë±â¹øÈ£</div>
+            <div class="status-badge" id="status-badge">ì ‘ìˆ˜ ëŒ€ê¸° ì¤‘</div>
+            <div>ì˜¤ëŠ˜ì˜ ëŒ€ê¸°ë²ˆí˜¸</div>
             <div class="order-number" id="my-order-num">--</div>
             
             <div id="estimated-time-box" class="time-info">
-                ¿Ï·á ¿¹Á¤<br><span id="time-text">--:--</span>
+                ì™„ë£Œ ì˜ˆì •<br><span id="time-text">--:--</span>
             </div>
 
             <div class="helper-text" id="guide-msg">
-                Àá½Ã¸¸ ±â´Ù·ÁÁÖ¼¼¿ä.<br>»çÀå´ÔÀÌ È®ÀÎÇÏ¸é ½Ã°£ÀÌ Ç¥½ÃµË´Ï´Ù.
+                ì ì‹œë§Œ ê¸°ë‹¤ë ¤ì£¼ì„¸ìš”.<br>ì‚¬ì¥ë‹˜ì´ í™•ì¸í•˜ë©´ ì‹œê°„ì´ í‘œì‹œë©ë‹ˆë‹¤.
             </div>
             
-            <button onclick="finishMyOrder()" style="margin-top:20px; padding:10px; width:100%; border:1px solid #ddd; background:white; border-radius:5px; cursor:pointer; display:none;" id="btn-new-order">»õ·Î ÁÖ¹®ÇÏ±â</button>
+            <button onclick="finishMyOrder()" style="margin-top:20px; padding:10px; width:100%; border:1px solid #ddd; background:white; border-radius:5px; cursor:pointer; display:none;" id="btn-new-order">ìƒˆë¡œ ì£¼ë¬¸í•˜ê¸°</button>
         </div>
     </div>
 
     <div class="footer-reset">
-        <button class="btn-reset-app" onclick="forceReset()">È­¸éÀÌ ¸ØÃè³ª¿ä? (ÃÊ±âÈ­)</button>
+        <button class="btn-reset-app" onclick="forceReset()">í™”ë©´ì´ ë©ˆì·„ë‚˜ìš”? (ì´ˆê¸°í™”)</button>
     </div>
 
     <script type="module">
@@ -106,7 +106,7 @@
         import { getDatabase, ref, push, set, onValue, get, child } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
         // =========================================================
-        // [¼³Á¤] ¾Æ·¡ °ıÈ£ ¾È¿¡ ÆÄÀÌ¾îº£ÀÌ½º ¼³Á¤°ªÀ» ºÙ¿©³ÖÀ¸¼¼¿ä.
+        // [ì„¤ì •] ì•„ë˜ ê´„í˜¸ ì•ˆì— íŒŒì´ì–´ë² ì´ìŠ¤ ì„¤ì •ê°’ì„ ë¶™ì—¬ë„£ìœ¼ì„¸ìš”.
         // =========================================================
         const firebaseConfig = {
            apiKey: "AIzaSyDn2Qoscan0DJsilwaoLzSMio7u_JrP9lI",
@@ -122,7 +122,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        // Àü¿ª º¯¼ö·Î ÇÔ¼ö ³ëÃâ (HTML onclick¿¡¼­ ¾²±â À§ÇØ)
+        // ì „ì—­ ë³€ìˆ˜ë¡œ í•¨ìˆ˜ ë…¸ì¶œ (HTML onclickì—ì„œ ì“°ê¸° ìœ„í•´)
         window.changeQty = changeQty;
         window.placeOrder = placeOrder;
         window.finishMyOrder = finishMyOrder;
@@ -132,10 +132,10 @@
         const dateString = now.toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'long'});
         document.getElementById('today-date').innerText = dateString;
 
-        // ·ÎÄÃ¿¡´Â '³» ÁÖ¹® ID'¸¸ ÀúÀå (µ¥ÀÌÅÍ´Â ¼­¹ö¿¡)
+        // ë¡œì»¬ì—ëŠ” 'ë‚´ ì£¼ë¬¸ ID'ë§Œ ì €ì¥ (ë°ì´í„°ëŠ” ì„œë²„ì—)
         let myKey = localStorage.getItem("my_active_order_key");
         
-        // ÆäÀÌÁö ·Îµå½Ã ³» »óÅÂ È®ÀÎ (¼­¹ö¿¡¼­ µè±â)
+        // í˜ì´ì§€ ë¡œë“œì‹œ ë‚´ ìƒíƒœ í™•ì¸ (ì„œë²„ì—ì„œ ë“£ê¸°)
         if(myKey) {
             startListeningMyOrder(myKey);
         }
@@ -161,56 +161,56 @@
         }
 
         async function placeOrder() {
-            // 1. ¿µ¾÷ »óÅÂ È®ÀÎ (¼­¹ö¿¡¼­ °¡Á®¿È)
+            // 1. ì˜ì—… ìƒíƒœ í™•ì¸ (ì„œë²„ì—ì„œ ê°€ì ¸ì˜´)
             const statusRef = ref(db, 'shopStatus');
             const snapshot = await get(statusRef);
             const shopStatus = snapshot.exists() ? snapshot.val() : "OPEN";
 
             if (shopStatus === "CLOSED") {
-                alert("ÇöÀç ¿µ¾÷ÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.\n´ÙÀ½¿¡ ÀÌ¿ëÇØÁÖ¼¼¿ä!"); return;
+                alert("í˜„ì¬ ì˜ì—…ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.\në‹¤ìŒì— ì´ìš©í•´ì£¼ì„¸ìš”!"); return;
             }
             if (shopStatus === "PAUSE") {
-                alert("Àá½Ã ÁÖ¹®ÀÌ ÁßÁöµÇ¾ú½À´Ï´Ù.\nÀá½Ã ÈÄ ´Ù½Ã ½ÃµµÇØÁÖ¼¼¿ä!"); return;
+                alert("ì ì‹œ ì£¼ë¬¸ì´ ì¤‘ì§€ë˜ì—ˆìŠµë‹ˆë‹¤.\nì ì‹œ í›„ ë‹¤ì‹œ ì‹œë„í•´ì£¼ì„¸ìš”!"); return;
             }
 
             const name = document.getElementById("user-name").value.trim();
             const phone = document.getElementById("user-phone").value.trim();
             let request = document.getElementById("user-request").value.trim();
-            if (request === "") request = "¸ÀÀÖ°Ô ¸¸µé¾îÁÖ¼¼¿ä";
+            if (request === "") request = "ë§›ìˆê²Œ ë§Œë“¤ì–´ì£¼ì„¸ìš”";
             
-            if (!name || !phone) { alert("ÀÌ¸§°ú ÈŞ´ëÆù ¹øÈ£¸¦ ²À ÀÔ·ÂÇØÁÖ¼¼¿ä."); return; }
-            if (phone.length < 4) { alert("ÈŞ´ëÆù ¹øÈ£¸¦ Á¤È®È÷ ÀÔ·ÂÇØÁÖ¼¼¿ä."); return; }
+            if (!name || !phone) { alert("ì´ë¦„ê³¼ íœ´ëŒ€í° ë²ˆí˜¸ë¥¼ ê¼­ ì…ë ¥í•´ì£¼ì„¸ìš”."); return; }
+            if (phone.length < 4) { alert("íœ´ëŒ€í° ë²ˆí˜¸ë¥¼ ì •í™•íˆ ì…ë ¥í•´ì£¼ì„¸ìš”."); return; }
 
             let selectedMenu = [];
             let totalQty = 0;
             document.querySelectorAll('.menu-item').forEach(item => {
                 const qty = parseInt(item.querySelector('.qty-display').innerText);
                 if (qty > 0) {
-                    selectedMenu.push(`${item.dataset.name} ${qty}°³`);
+                    selectedMenu.push(`${item.dataset.name} ${qty}ê°œ`);
                     totalQty += qty;
                 }
             });
             
-            if (totalQty === 0) { alert("¸Ş´º¸¦ ÇÏ³ª ÀÌ»ó ¼±ÅÃÇØÁÖ¼¼¿ä!"); return; }
+            if (totalQty === 0) { alert("ë©”ë‰´ë¥¼ í•˜ë‚˜ ì´ìƒ ì„ íƒí•´ì£¼ì„¸ìš”!"); return; }
 
-            // 2. ÁÖ¹® ¹øÈ£ »ı¼º (Æ®·£Àè¼Ç ´ë½Å °£´ÜÈ÷ ³¯Â¥+·£´ıÀ¸·Î Ã³¸®ÇÏ°Å³ª, ¼­¹ö Ä«¿îÅÍ »ç¿ë)
-            // °£´ÜÇÏ°Ô ÇöÀç ÃÊ + ·£´ıÀ¸·Î ´ë±â¹øÈ£ »ı¼º (Ãæµ¹ ¹æÁö¿ë)
+            // 2. ì£¼ë¬¸ ë²ˆí˜¸ ìƒì„± (íŠ¸ëœì­ì…˜ ëŒ€ì‹  ê°„ë‹¨íˆ ë‚ ì§œ+ëœë¤ìœ¼ë¡œ ì²˜ë¦¬í•˜ê±°ë‚˜, ì„œë²„ ì¹´ìš´í„° ì‚¬ìš©)
+            // ê°„ë‹¨í•˜ê²Œ í˜„ì¬ ì´ˆ + ëœë¤ìœ¼ë¡œ ëŒ€ê¸°ë²ˆí˜¸ ìƒì„± (ì¶©ëŒ ë°©ì§€ìš©)
             const today = new Date();
             const orderNum = today.getHours().toString() + today.getMinutes().toString() + Math.floor(Math.random()*10);
 
-            // 3. ¼­¹ö¿¡ ÀúÀå
+            // 3. ì„œë²„ì— ì €ì¥
             const ordersRef = ref(db, 'orders');
-            const newOrderRef = push(ordersRef); // »õ Å° »ı¼º
+            const newOrderRef = push(ordersRef); // ìƒˆ í‚¤ ìƒì„±
             const newKey = newOrderRef.key;
 
             const newOrder = {
                 key: newKey,
-                orderNumber: orderNum, // ½ÇÁ¦·Ğ ¼­¹ö Ä«¿îÆÃÀÌ ÁÁÀ¸³ª °£´ÜÈ÷ ±¸Çö
+                orderNumber: orderNum, // ì‹¤ì œë¡  ì„œë²„ ì¹´ìš´íŒ…ì´ ì¢‹ìœ¼ë‚˜ ê°„ë‹¨íˆ êµ¬í˜„
                 name: name,
                 phone: phone,
                 request: request,
                 menu: selectedMenu.join(", "), 
-                status: "Á¢¼ö ´ë±â",
+                status: "ì ‘ìˆ˜ ëŒ€ê¸°",
                 completeTime: "",
                 timestamp: new Date().toLocaleTimeString('ko-KR')
             };
@@ -218,28 +218,28 @@
             set(newOrderRef, newOrder)
                 .then(() => {
                     localStorage.setItem("my_active_order_key", newKey);
-                    alert("ÁÖ¹®ÀÌ Àü¼ÛµÇ¾ú½À´Ï´Ù! (´ë±â¹øÈ£: " + orderNum + ")");
+                    alert("ì£¼ë¬¸ì´ ì „ì†¡ë˜ì—ˆìŠµë‹ˆë‹¤! (ëŒ€ê¸°ë²ˆí˜¸: " + orderNum + ")");
                     startListeningMyOrder(newKey);
                 })
                 .catch((e) => {
-                    alert("ÁÖ¹® Àü¼Û ½ÇÆĞ: " + e.message);
+                    alert("ì£¼ë¬¸ ì „ì†¡ ì‹¤íŒ¨: " + e.message);
                 });
         }
 
         function startListeningMyOrder(key) {
-            // È­¸é ÀüÈ¯
+            // í™”ë©´ ì „í™˜
             document.getElementById("order-form-area").style.display = "none";
             document.getElementById("my-status-area").style.display = "block";
 
-            // ½Ç½Ã°£ °¨½Ã ½ÃÀÛ
+            // ì‹¤ì‹œê°„ ê°ì‹œ ì‹œì‘
             const myOrderRef = ref(db, 'orders/' + key);
             onValue(myOrderRef, (snapshot) => {
                 const order = snapshot.val();
                 if (order) {
                     showStatusScreen(order);
                 } else {
-                    // ÁÖ¹®ÀÌ »èÁ¦µÈ °æ¿ì (¸¶°¨ µî)
-                    alert("ÁÖ¹® Á¤º¸°¡ »ç¶óÁ³½À´Ï´Ù. (¸¶°¨µÇ¾ú°Å³ª Ãë¼ÒµÊ)");
+                    // ì£¼ë¬¸ì´ ì‚­ì œëœ ê²½ìš° (ë§ˆê° ë“±)
+                    alert("ì£¼ë¬¸ ì •ë³´ê°€ ì‚¬ë¼ì¡ŒìŠµë‹ˆë‹¤. (ë§ˆê°ë˜ì—ˆê±°ë‚˜ ì·¨ì†Œë¨)");
                     finishMyOrder();
                 }
             });
@@ -254,26 +254,26 @@
 
             badge.innerText = order.status;
             
-            // »óÅÂº° µğÀÚÀÎ
-            if (order.status === "Á¶¸® Áß") {
+            // ìƒíƒœë³„ ë””ìì¸
+            if (order.status === "ì¡°ë¦¬ ì¤‘") {
                 badge.style.backgroundColor = "#ffc107";
                 badge.style.color = "black";
                 if (order.completeTime) {
                     timeBox.style.display = "block";
                     document.getElementById("time-text").innerText = order.completeTime;
-                    guide.innerText = "¸ÀÀÖ°Ô ¸¸µé°í ÀÖ½À´Ï´Ù!";
+                    guide.innerText = "ë§›ìˆê²Œ ë§Œë“¤ê³  ìˆìŠµë‹ˆë‹¤!";
                 }
-            } else if (order.status === "Á¶¸® ¿Ï·á") {
+            } else if (order.status === "ì¡°ë¦¬ ì™„ë£Œ") {
                 badge.style.backgroundColor = "#28a745";
                 badge.style.color = "white";
-                badge.innerText = "ÇÈ¾÷ÇØ ÁÖ¼¼¿ä!";
+                badge.innerText = "í”½ì—…í•´ ì£¼ì„¸ìš”!";
                 card.style.borderColor = "#28a745";
                 card.style.backgroundColor = "#f0fff4";
                 timeBox.style.display = "none";
-                guide.innerText = "Å°¿À½ºÅ©¿¡¼­ °áÁ¦ÇÑ µÚ ¿µ¼öÁõÀ» Á¦½ÃÇØÁÖ¼¼¿ä";
+                guide.innerText = "í‚¤ì˜¤ìŠ¤í¬ì—ì„œ ê²°ì œí•œ ë’¤ ì˜ìˆ˜ì¦ì„ ì œì‹œí•´ì£¼ì„¸ìš”";
                 document.getElementById("btn-new-order").style.display = "block";
             } else {
-                // Á¢¼ö ´ë±â
+                // ì ‘ìˆ˜ ëŒ€ê¸°
                 badge.style.backgroundColor = "#e9ecef";
                 badge.style.color = "black";
                 card.style.backgroundColor = "white";
@@ -288,7 +288,7 @@
         }
 
         function forceReset() {
-            if(confirm("ÃÊ±âÈ­ ÇÏ½Ã°Ú½À´Ï±î?")) {
+            if(confirm("ì´ˆê¸°í™” í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")) {
                 finishMyOrder();
             }
         }
