@@ -51,26 +51,221 @@
 
         <div class="input-card">
             <h3 class="menu-category">COFFEE</h3>
+            <div class="menu-item" data-name="에스프레소" data-price="2000">
+                <div class="menu-info"><span class="menu-name">에스프레소</span><span class="menu-price">2,000원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="아메리카노(HOT)" data-price="2000">
+                <div class="menu-info"><span class="menu-name">아메리카노 (HOT)</span><span class="menu-price">2,000원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
             <div class="menu-item" data-name="아메리카노(ICE)" data-price="2000">
                 <div class="menu-info"><span class="menu-name">아메리카노 (ICE)</span><span class="menu-price">2,000원</span></div>
                 <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
             </div>
-             <div class="menu-item" data-name="아메리카노(HOT)" data-price="2000">
-                <div class="menu-info"><span class="menu-name">아메리카노 (HOT)</span><span class="menu-price">2,000원</span></div>
+            <div class="menu-item" data-name="카페라떼(HOT)" data-price="2700">
+                <div class="menu-info"><span class="menu-name">카페라떼 (HOT)</span><span class="menu-price">2,700원</span></div>
                 <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
             </div>
             <div class="menu-item" data-name="카페라떼(ICE)" data-price="2700">
                 <div class="menu-info"><span class="menu-name">카페라떼 (ICE)</span><span class="menu-price">2,700원</span></div>
                 <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
             </div>
-             <div class="menu-item" data-name="카페라떼(HOT)" data-price="2700">
-                <div class="menu-info"><span class="menu-name">카페라떼 (HOT)</span><span class="menu-price">2,700원</span></div>
+            <div class="menu-item" data-name="오틀리라떼(HOT)" data-price="3400">
+                <div class="menu-info"><span class="menu-name">오틀리라떼 (HOT)</span><span class="menu-price">3,400원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="오틀리라떼(ICE)" data-price="3400">
+                <div class="menu-info"><span class="menu-name">오틀리라떼 (ICE)</span><span class="menu-price">3,400원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="바닐라라떼(HOT)" data-price="3200">
+                <div class="menu-info"><span class="menu-name">바닐라 라떼 (HOT)</span><span class="menu-price">3,200원</span></div>
                 <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
             </div>
             <div class="menu-item" data-name="바닐라라떼(ICE)" data-price="3200">
                 <div class="menu-info"><span class="menu-name">바닐라 라떼 (ICE)</span><span class="menu-price">3,200원</span></div>
                 <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
             </div>
+            <div class="menu-item" data-name="헤이즐넛라떼(HOT)" data-price="3200">
+                <div class="menu-info"><span class="menu-name">헤이즐넛 라떼 (HOT)</span><span class="menu-price">3,200원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="헤이즐넛라떼(ICE)" data-price="3200">
+                <div class="menu-info"><span class="menu-name">헤이즐넛 라떼 (ICE)</span><span class="menu-price">3,200원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="카라멜 마끼아또(HOT)" data-price="3200">
+                <div class="menu-info"><span class="menu-name">카라멜 마끼아또 (HOT)</span><span class="menu-price">3,200원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="카라멜 마끼아또(ICE)" data-price="3200">
+                <div class="menu-info"><span class="menu-name">카라멜 마끼아또 (ICE)</span><span class="menu-price">3,200원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="킨믹스라떼(ICE)" data-price="3400">
+                <div class="menu-info"><span class="menu-name">킨믹스라떼 (ICE Only)</span><span class="menu-price">3,400원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="샷자몽 라떼(ICE)" data-price="3400">
+                <div class="menu-info"><span class="menu-name">샷자몽 라떼 (ICE Only)</span><span class="menu-price">3,400원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="디카페인 콜드브루(ICE)" data-price="2500">
+                <div class="menu-info"><span class="menu-name">디카페인 콜드브루 (ICE Only)</span><span class="menu-price">2,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="디카페인 콜드브루 라떼(ICE)" data-price="3000">
+                <div class="menu-info"><span class="menu-name">디카페인 콜드브루 라떼 (ICE)</span><span class="menu-price">3,000원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+
+            <h3 class="menu-category">DRINKS</h3>
+            <div class="menu-item" data-name="초코라떼(HOT)" data-price="3000">
+                <div class="menu-info"><span class="menu-name">초코라떼 (HOT)</span><span class="menu-price">3,000원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="초코라떼(ICE)" data-price="3000">
+                <div class="menu-info"><span class="menu-name">초코라떼 (ICE)</span><span class="menu-price">3,000원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="녹차라떼(HOT)" data-price="3000">
+                <div class="menu-info"><span class="menu-name">녹차라떼 (HOT)</span><span class="menu-price">3,000원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="녹차라떼(ICE)" data-price="3000">
+                <div class="menu-info"><span class="menu-name">녹차라떼 (ICE)</span><span class="menu-price">3,000원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="딸기라떼(ICE)" data-price="3500">
+                <div class="menu-info"><span class="menu-name">딸기라떼 (ICE)</span><span class="menu-price">3,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="오곡라떼(ICE)" data-price="4000">
+                <div class="menu-info"><span class="menu-name">오곡라떼 (ICE Only)</span><span class="menu-price">4,000원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="레몬에이드" data-price="3500">
+                <div class="menu-info"><span class="menu-name">레몬에이드 (ICE Only)</span><span class="menu-price">3,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="자몽에이드" data-price="3500">
+                <div class="menu-info"><span class="menu-name">자몽에이드 (ICE Only)</span><span class="menu-price">3,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="청포도에이드" data-price="3500">
+                <div class="menu-info"><span class="menu-name">청포도에이드 (ICE Only)</span><span class="menu-price">3,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="패션후르츠에이드" data-price="3500">
+                <div class="menu-info"><span class="menu-name">패션후르츠에이드 (ICE Only)</span><span class="menu-price">3,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="아이스티(레몬)" data-price="2500">
+                <div class="menu-info"><span class="menu-name">아이스티 레몬 (ICE Only)</span><span class="menu-price">2,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="아이스티(피치)" data-price="2500">
+                <div class="menu-info"><span class="menu-name">아이스티 피치 (ICE Only)</span><span class="menu-price">2,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+
+            <h3 class="menu-category">TEA</h3>
+            <div class="menu-item" data-name="로얄 밀크티(HOT)" data-price="3500">
+                <div class="menu-info"><span class="menu-name">로얄 밀크티 (HOT)</span><span class="menu-price">3,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="로얄 밀크티(ICE)" data-price="3500">
+                <div class="menu-info"><span class="menu-name">로얄 밀크티 (ICE)</span><span class="menu-price">3,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="루이보스 아몬드 밀크티(HOT)" data-price="3500">
+                <div class="menu-info"><span class="menu-name">루이보스 아몬드 밀크티 (HOT)</span><span class="menu-price">3,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="루이보스 아몬드 밀크티(ICE)" data-price="3500">
+                <div class="menu-info"><span class="menu-name">루이보스 아몬드 밀크티 (ICE)</span><span class="menu-price">3,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="캐모마일(HOT)" data-price="2500">
+                <div class="menu-info"><span class="menu-name">캐모마일 (HOT)</span><span class="menu-price">2,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="캐모마일(ICE)" data-price="2500">
+                <div class="menu-info"><span class="menu-name">캐모마일 (ICE)</span><span class="menu-price">2,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="루이보스(HOT)" data-price="2500">
+                <div class="menu-info"><span class="menu-name">루이보스 (HOT)</span><span class="menu-price">2,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="루이보스(ICE)" data-price="2500">
+                <div class="menu-info"><span class="menu-name">루이보스 (ICE)</span><span class="menu-price">2,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="피치 우롱(HOT)" data-price="2500">
+                <div class="menu-info"><span class="menu-name">피치 우롱 (HOT)</span><span class="menu-price">2,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="피치 우롱(ICE)" data-price="2500">
+                <div class="menu-info"><span class="menu-name">피치 우롱 (ICE)</span><span class="menu-price">2,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="민트(HOT)" data-price="2500">
+                <div class="menu-info"><span class="menu-name">민트 (HOT)</span><span class="menu-price">2,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="민트(ICE)" data-price="2500">
+                <div class="menu-info"><span class="menu-name">민트 (ICE)</span><span class="menu-price">2,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="유자차(HOT)" data-price="2500">
+                <div class="menu-info"><span class="menu-name">유자차 (HOT)</span><span class="menu-price">2,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="유자차(ICE)" data-price="2500">
+                <div class="menu-info"><span class="menu-name">유자차 (ICE)</span><span class="menu-price">2,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="자몽차(HOT)" data-price="2500">
+                <div class="menu-info"><span class="menu-name">자몽차 (HOT Only)</span><span class="menu-price">2,500원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+
+            <h3 class="menu-category">DESSERT</h3>
+            <div class="menu-item" data-name="휘낭시에(플레인)" data-price="2200">
+                <div class="menu-info"><span class="menu-name">휘낭시에: 플레인</span><span class="menu-price">2,200원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="휘낭시에(솔티카라멜)" data-price="2200">
+                <div class="menu-info"><span class="menu-name">휘낭시에: 솔티카라멜</span><span class="menu-price">2,200원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="휘낭시에(초코)" data-price="2200">
+                <div class="menu-info"><span class="menu-name">휘낭시에: 초코</span><span class="menu-price">2,200원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="레몬 파운드" data-price="3600">
+                <div class="menu-info"><span class="menu-name">레몬 파운드</span><span class="menu-price">3,600원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="흑임자 파운드" data-price="3600">
+                <div class="menu-info"><span class="menu-name">흑임자 파운드</span><span class="menu-price">3,600원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="블루베리 베이글" data-price="2800">
+                <div class="menu-info"><span class="menu-name">블루베리 베이글 (+크림치즈)</span><span class="menu-price">2,800원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="어니언 베이글" data-price="2800">
+                <div class="menu-info"><span class="menu-name">어니언 베이글 (+크림치즈)</span><span class="menu-price">2,800원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+            <div class="menu-item" data-name="크림치즈 프렛즐" data-price="2800">
+                <div class="menu-info"><span class="menu-name">크림치즈 프렛즐</span><span class="menu-price">2,800원</span></div>
+                <div class="qty-control"><button class="btn-qty" onclick="changeQty(this, -1)">-</button><span class="qty-display">0</span><button class="btn-qty" onclick="changeQty(this, 1)">+</button></div>
+            </div>
+
             <div class="total-area">
                 총 결제금액: <span class="total-price" id="total-price">0</span>원
             </div>
@@ -295,3 +490,4 @@
     </script>
 </body>
 </html>
+
